@@ -1,0 +1,60 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 1rem;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #1e293b; /* Adjust background color as needed */
+	z-index: 999; /* Ensure it's above other elements */
+}
+.userInfo {
+	display: flex;
+	.userIcon {
+		width: 60px;
+		height: 100%;
+		border-radius: 50%;
+		padding: 0.5rem;
+		background-color: #cbd5e1;
+		margin-right: 0.5rem;
+		margin-top: 4px;
+		margin-right: 15px;
+	}
+	.name {
+		font-size: 3rem;
+		color: #cbd5e1;
+	}
+	.email {
+		font-size: 1.8rem;
+		color: #cbd5e1;
+	}
+}
+.logout {
+	display: inline-block;
+	background-color: crimson;
+	padding: 1rem 2rem;
+	font-size: 1.8rem;
+	border: none;
+	color: white;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: 0.3s ease background-color, 0.3s ease color;
+	&:hover {
+		background-color: #b91c1c;
+		color: #cbd5e1;
+	}
+}
+.editBtn {
+	display: inline-block;
+	text-decoration: underline;
+	margin-top: 1rem;
+	font-size: 1.5rem;
+	cursor: pointer;
+	color: #cbd5e1;
+	background-color: #0f172a;
+	padding: 20px;
+	border-radius: 100px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}

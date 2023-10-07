@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Auth from './pages/Auth';
-import Layout from './components/Layout'; // Import the Layout component
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Home from './pages/Home';
 import EditProfile from './pages/EditProfile';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <>
       <Toaster
@@ -20,18 +21,17 @@ function App() {
         }}
       />
 
-      {' '}
-      {/* Use the Layout component */}
       <Routes>
-
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={isAuthenticated ? <Home /> : <Navigate to="/auth/register" />}
+        />
         <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="auth" element={<Auth />}>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+        <Route path="auth" element={<Auth setIsAuthenticated={setIsAuthenticated} />}>
+          <Route path="login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
         </Route>
       </Routes>
-
     </>
   );
 }

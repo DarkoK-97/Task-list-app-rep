@@ -5,21 +5,29 @@ import toast from 'react-hot-toast';
 
 import classes from './AuthForm.module.scss';
 
-function Login() {
+function Login({ setIsAuthenticated }) {
   const navigate = useNavigate();
 
   const login = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+
     try {
-      await axios.post('/api/auth/login', {
+      const response = await axios.post('/api/auth/login', {
         email,
         password,
       });
-      navigate('/'); 
+
+      if (response.status === 200) {
+        setIsAuthenticated(true);
+        toast.success('Login successful!');
+        navigate('/');
+      } else {
+        toast.error('Invalid email or password.');
+      }
     } catch (err) {
-      console.log(err);
+      console.error('Login error:', err);
       toast.error('Something went wrong');
     }
   };
